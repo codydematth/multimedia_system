@@ -1,0 +1,65 @@
+<!-- navigation bar -->
+<nav class="navbar navbar-expand-lg  navbar-light" style=" padding-top: 10px; background-color: rgb(134, 137, 138);">
+    <div class="container" >
+          <a class="navbar-brand" href="{% url 'index' %}" style="color:#22c0ff;" >Home</a>
+          {% comment %} {% if user.is_superuser %}
+                    
+                       <a class="nav-link" href="{% url 'admin:index' %}">Admin</span> </a>
+                 
+                    {%endif%} {% endcomment %}
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+               aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+           </button>
+          <div class="collapse navbar-collapse" id="basicExampleNav" >
+            <ul class=" navbar-nav  mr-auto smooth-scroll " >
+                   
+                    {%if user.is_superuser%}
+                    <li class="nav-item mt-2 mb-2 ">
+                      <div class="dropdown">
+                          <a class="nav-link  ml-4 dropdown-toggle" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false" style="color: #22c0ff; font-size: 20px;" href="#">{{ user.username }}</a>
+                          <div class="dropdown-menu" style="border: none; width: 10%;">
+                              <a class=" dropdown-item mb-2" style="color: #22c0ff;" href="{% url 'admin:index' %}">Admin</a>
+                                <a class=" dropdown-item" style="color: #22c0ff;" href="{% url 'user_logout' %}">Logout</a>
+                            
+                        </div>
+                      </div>
+                    </li>
+                    {% elif user.is_authenticated %}
+                    <li class="nav-item mt-2 mb-2 ">
+                      <div class="dropdown">
+                          <a class="nav-link  ml-4 dropdown-toggle" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false" style="color: #22c0ff; font-size: 20px;" href="#">{{ user.username }}</a>
+                          <div class="dropdown-menu" style="border: none; width: 10%;">
+                              <a class=" dropdown-item mb-2" style="color: #22c0ff;" href="{% url 'profile' %}">Profile</a>
+                                <a class=" dropdown-item" style="color: #22c0ff;" href="{% url 'user_logout' %}">Logout</a>
+                            
+                        </div>
+                      </div>
+                    </li>
+                    {% else %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'user_login' %}">Login</a>
+                        </li>
+                        <li class="nav-item " >
+                           <a class="nav-link" href="{% url 'register' %}">Register</span> </a>
+                        </li>
+                    {% endif %}
+
+
+                    
+
+                    {% comment %} <li class="nav-item">
+                       <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                    </li> {% endcomment %}
+                    {% comment %} <li class="nav-item">
+                       <a class="nav-link" href="https://github.com/somvirs57/school_learning_management">GitHub</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.youtube.com/c/LearningBots">Youtube</a>
+                    </li> {% endcomment %}
+
+            </ul>
+          </div>
+    </div>
+  </nav>
+

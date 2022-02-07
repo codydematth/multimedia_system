@@ -59,7 +59,3 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
 
-class ProfileUpdateForm(forms.ModelForm):
-	class Meta:
-		model = UserProfileInfo
-		fields = ['profile_pic']

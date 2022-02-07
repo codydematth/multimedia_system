@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from app_users.forms import UserForm, UserProfileInfoForm
-from .forms import  UserUpdateForm, ProfileUpdateForm
+from .forms import  UserUpdateForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -90,21 +90,21 @@ class HomeView(TemplateView):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.userprofileinfo)
+        
 
-        if u_form.is_valid() and p_form.is_valid():
+        if u_form.is_valid():
             u_form.save()
-            p_form.save()
+           
             # messages.success(request, f'Your profile has been updated!')
             # return redirect('profileview')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.userprofileinfo)
+        
 
     context = {
         'u_form' : u_form,
-        'p_form' : p_form
+        
 
     }
     return render(request, 'profile.html', context)

@@ -18,22 +18,31 @@
             <div class="d-xl-flex d-lg-flex d-md-none d-sm-none d-none justify-content-center flex-column" style="width: 40%;">
 
             <div class="d-flex flex-column justify-content-center align-items-center vertical-align-center">
+              {% if user.has_profile%}
                 
                     <img class="img-thumbnail" id="id_profile_image_display" src="{{ user.userprofileinfo.profile_pic.url }}" style="width: 100%; margin-bottom: 30px; "/>
-                
-               
+              {%else%}
+              <img class="img-thumbnail profile-image" id="id_profile_image_display" src="{% static 'Images/default.jpg'%}" alt="balnk image" style="width: 100%; margin-bottom: 30px;"/>
+              <span class="text-warning" >Request from your Teacher to show your image</span>
+
+               {%endif%}
             </div>
 
 
             </div>
+            
             <div class="d-xl-none d-lg-none d-md-flex d-sm-flex d-flex justify-content-center flex-column" style="width: 100%;" >
                 
                 <div class="d-flex  flex-column  justify-content-center align-items-center vertical-align-center">
+                  {% if user.has_profile%}
                     
                         <img class="img-thumbnail profile-image" id="id_profile_image_display" src="{{ user.userprofileinfo.profile_pic.url }}" style="width: 60%;"/>
-                    
+                  {% else%}
+                  <img class="img-thumbnail profile-image" id="id_profile_image_display" src="{% static 'Images/default.jpg' %}" style="width: 60%;"/>
+                  <span class="text-warning" >Request from your Teacher to show your image</span>
+                    {%endif%}
                 </div>
-                 
+                
                 
             </div>
 
